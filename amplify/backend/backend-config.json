@@ -1,0 +1,9 @@
+{
+  "function": {
+    "amplifylambdatry8b946587": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  }
+}
