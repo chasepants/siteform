@@ -1,19 +1,17 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import RestaurantForm from './forms/RestaurantForm';
+import AboutMeForm from './forms/AboutMeForm';
 
-function SiteForm() {
-    const [businessName, setBusinessName]               = useState('');
-    const [businessDescription, setBusinessDescription] = useState('');
-    const [hours, setHours]                             = useState('');
-    const [location, setLocation]                       = useState('');
-    const [slogan, setSlogan]                           = useState('');
-    const [postData, setPostData]                       = useState({});
-    const [status, setStatus]                           = useState(-1);
+function SiteForm() {             
+    const { REACT_APP_MY_ENV } = process.env;            
+    const [postData, setPostData] = useState({});
+    const [status, setStatus]     = useState(-1);
 
-    const bucketName = useSelector(state => state.bucketName);
-    console.log(bucketName);
+    const bucketName   = useSelector(state => state.bucketName);
     const templateName = useSelector(state => state.templateName);
+    console.log(bucketName);
     console.log(templateName);
  
     useEffect(()=>{
@@ -27,45 +25,15 @@ function SiteForm() {
         }
         generateWebsiteFiles()
     }, [postData]);
-
-    return (
-        <div className="App">
-            <h1>siteform</h1>
-            <p>Tell us about your site</p>
-            <label htmlFor="fname">Business Name:</label><br/>
-            <input onChange={event => setBusinessName(event.target.value)} value={businessName} type="text" id="fname" name="fname"/><br/>
-            <br/>
-            <label htmlFor="fname">Business Description:</label><br/>
-            <input onChange={event => setBusinessDescription(event.target.value)} value={businessDescription} type="text" id="fname" name="fname"/><br/>
-            <br/>
-            <label htmlFor="fname">Hours:</label><br/>
-            <input onChange={event => setHours(event.target.value)} value={hours} type="text" id="fname" name="fname"/><br/>
-            <br/>
-            <label htmlFor="fname">Location:</label><br/>
-            <input onChange={event => setLocation(event.target.value)} value={location} type="text" id="fname" name="fname"/><br/>
-            <br/>
-            <label htmlFor="fname">Slogan:</label><br/>
-            <input onChange={event => setSlogan(event.target.value)} value={slogan} type="text" id="fname" name="fname"/><br/>
-            <br/>
-            <br/>
-            <button onClick={event => setPostData({
-                "businessName":        businessName,
-                "businessDescription": businessDescription,
-                "slogan":              slogan,
-                "hours":               hours,
-                "location":            location,
-                "bucketName":          bucketName,
-                "templateName":        templateName
-            })}>Build Website</button>
-
-            <br/>
-           {
-                status === 200 &&
-                <h4>You can visit your site <a href={`http://${bucketName}.s3-website-us-west-1.amazonaws.com`}>HERE</a></h4>
-            }
-            
-        </div>
-    );
+    
+    switch (templateName) {
+        case 1:
+            return <RestaurantForm bucketName={bucketName} setPostData={setPostData} status={status} templateName={templateName}/>
+        case 2:
+            return <AboutMeForm bucketName={bucketName} setPostData={setPostData} status={status} templateName={templateName}/>
+        default:
+            return <p>loading</p>
+    }
 }
 
 export default SiteForm;

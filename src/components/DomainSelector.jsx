@@ -1,9 +1,12 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
+import { Button, Form } from 'react-bootstrap';
+
 
 function DomainSelector() {
+  const { REACT_APP_MY_ENV } = process.env;
   const [domainName, setDomainName] = useState('');
   const [domainAvailability, setDomainAvailability] = useState('');
   const [search, setSearch] = useState('');
@@ -17,50 +20,66 @@ function DomainSelector() {
   }
 
   useEffect(async () => {
-    console.log(bucketName);
-    console.log(templateName);
-
     const checkDomainNameAvailability = async () => {
-      const result = await axios(
-        `https://j7thv6xq6e.execute-api.us-west-1.amazonaws.com/prod/MyServerlessWebsite?domain=${search}`
-      )
+      let result = null;
+      
+      if (REACT_APP_MY_ENV !== 'development') {
+        result = await axios(
+          `https://j7thv6xq6e.execute-api.us-west-1.amazonaws.com/prod/MyServerlessWebsite?domain=${search}`
+        )
 
-      if (result.data['Availability'] === 'AVAILABLE') {
+        if (result.data['Availability'] === 'AVAILABLE') {
+          dispatch({
+            type: "ADD_BUCKET",
+            bucketName: search
+          })
+        } 
+      } else {
+        result = {
+          data: {
+            Availability: 'AVAILABLE'
+          }
+        };
+
         dispatch({
           type: "ADD_BUCKET",
-          bucketName: search+'-'+bucketName
+          bucketName: 'rapid-site-test-bucket'
         })
-      }  
+      } 
           
       setDomainAvailability(result.data['Availability']);
-    };
-    checkDomainNameAvailability();
-    
+    }
+
+    if (search) {
+      checkDomainNameAvailability();
+    }
+
   }, [search])
   
   return (
-    <div className="App">
+    <div className="d-flex flex-column justify-content-center align-items-center p-5">
       <h1>siteform</h1>
       <p>First find a domain:</p> <input value={domainName} onChange={event => {
       setDomainAvailability('')
       setDomainName(event.target.value)
       }}/>
       <br/><br/>
-      <button onClick={event => setSearch(domainName)}>check availability</button>
+      <Button onClick={event => setSearch(domainName)}>check availability</Button>
+      <br/><br/>
       {
-      domainAvailability.length > 0 &&
+      domainAvailability === 'AVAILABLE' &&
       <h3>
           {domainName} is {domainAvailability}
       </h3>
       }
       <br/><br/>
       {
-      domainAvailability === 'AVAILABLE' &&
-      <button>
-        <Link onClick={()=> {
-          buyDomainAndSetBucket()
-        }} to='/templates'>Continue</Link>
-      </button>
+        domainAvailability === 'AVAILABLE' &&
+            <Link type="button" className="btn btn-primary" style={{ textDecoration: 'none', border: 'none' }} onClick={()=> {
+              buyDomainAndSetBucket()
+            }} to='/templates'>
+                Continue
+            </Link>
       }
     </div>
   );
