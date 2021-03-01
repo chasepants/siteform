@@ -1,7 +1,11 @@
-import {useState} from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { Button, Form } from 'react-bootstrap';
+import SubHeader from '../common/SubHeader';
 import ContactPageForm from './restaurant-forms/ContactPageForm';
 import AboutUsForm from './restaurant-forms/AboutUsForm';
+
 
 function RestaurantForm({bucketName, setPostData, status, templateName}) {
     const [businessName, setBusinessName]               = useState('');
@@ -16,10 +20,16 @@ function RestaurantForm({bucketName, setPostData, status, templateName}) {
     const [established, setEstablished]                 = useState('');
     const [ownersBio, setOwnersBio]                     = useState(''); 
 
+    const dispatch = useDispatch();
+
+    dispatch({
+        type: "ADD_SUB_HEADER",
+        header: "Tell us about your restaurant"
+      })
+
     return (
-        <div className="d-flex flex-column justify-content-center align-items-center p-5">
-            <h1>Siteform</h1>
-            <p>Tell us about your restaurant</p>
+        <div className="d-flex flex-column justify-content-center align-items-center">
+            <SubHeader/>
             
             <Form>
                 <Form.Group>
