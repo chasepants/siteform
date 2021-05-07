@@ -5,18 +5,24 @@ import { Button, Form } from 'react-bootstrap';
 import SubHeader from '../common/SubHeader';
 import ContactPageForm from './restaurant-forms/ContactPageForm';
 import AboutUsForm from './restaurant-forms/AboutUsForm';
+import GeneralInfoForm from './restaurant-forms/GeneralInfoForm';
 
+const GENERAL_FORM = 0;
+const CONTACT_FORM = 1;
+const ABOUT_FORM   = 2;
 
 function RestaurantForm({bucketName, setPostData, status, templateName}) {
+    const [currentFormIndex, setCurrentFormIndex]       = useState(0);
+    //General Info Form Fields
     const [businessName, setBusinessName]               = useState('');
     const [businessDescription, setBusinessDescription] = useState('');
     const [hours, setHours]                             = useState('');
     const [location, setLocation]                       = useState('');
     const [slogan, setSlogan]                           = useState('');
-    const [contactPageForm, setShowContactPageForm]     = useState(false);
-    const [aboutUsPageForm, setShowAboutUsPageForm]     = useState(false);
+    //Contact Form Fields
     const [phone, setPhone]                             = useState('');
     const [email, setEmail]                             = useState('');
+    //About Form Fields
     const [established, setEstablished]                 = useState('');
     const [ownersBio, setOwnersBio]                     = useState(''); 
 
@@ -32,114 +38,66 @@ function RestaurantForm({bucketName, setPostData, status, templateName}) {
             <SubHeader/>
             
             <Form>
-                <Form.Group>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        onChange={event => setBusinessName(event.target.value)} 
-                        value={businessName} 
-                        type="text"
-                    />
-                    <Form.Text className="text-muted">
-                        This will be displayed as the main title
-                    </Form.Text>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control
-                        onChange={event => setBusinessDescription(event.target.value)} 
-                        value={businessDescription}
-                        type="text"
-                    />
-                    <Form.Text className="text-muted">
-                        Give us 1 or 2 sentences about your restaurant
-                    </Form.Text>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Hours</Form.Label>
-                    <Form.Control
-                        onChange={event => setHours(event.target.value)}
-                        value={hours}
-                        type="text"    
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Location</Form.Label>
-                    <Form.Control
-                        onChange={event => setLocation(event.target.value)}
-                        value={location}
-                        type="text"   
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Slogan</Form.Label>
-                    <Form.Control
-                        onChange={event => setSlogan(event.target.value)}
-                        value={slogan}
-                        type="text"   
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <h6>Do you want a contact page?</h6>
-                    <label className="radio-inline">
-                        <input type="radio" name="contact-page" onClick={() => setShowContactPageForm(true)}/>
-                        Yes
-                    </label>
-                    <label className="radio-inline ml-4">
-                        <input type="radio" name="contact-page" onClick={() => setShowContactPageForm(false)}/> 
-                        No
-                    </label>
-                </Form.Group>
-                <Form.Group>
-                    {
-                        contactPageForm && 
-                        <ContactPageForm phone={phone} setPhone={setPhone} email={email} setEmail={setEmail} />
+                {(() => {
+                    let form = null;
+                    switch (currentFormIndex) {
+                        case GENERAL_FORM:
+                            console.log('returning general form....')
+                            return <GeneralInfoForm 
+                                        businessName={businessName} 
+                                        setBusinessName={setBusinessName} 
+                                        businessDescription={businessDescription}
+                                        setBusinessDescription={setBusinessDescription}
+                                        hours={hours} 
+                                        setHours={setHours} 
+                                        location={location}
+                                        setLocation={setLocation}
+                                        slogan={slogan}
+                                        setSlogan={setSlogan}
+                                    />;
+                        case CONTACT_FORM:
+                            console.log('returning contact form....')
+                            return <ContactPageForm 
+                                        phone={phone}
+                                        setPhone={setPhone}
+                                        email={email}
+                                        setEmail={setEmail}
+                                    />;
+                        case ABOUT_FORM:
+                            console.log('returning about form....')
+                            return <AboutUsForm 
+                                        established={established}
+                                        setEstablished={setEstablished}
+                                        ownersBio={ownersBio}
+                                        setOwnersBio={setOwnersBio}
+                                    />;
+                        default:
+                            break;
                     }
-                </Form.Group>
-                <Form.Group>
-                    <h6>Do you want an About Us page?</h6>
-                    <label className="radio-inline">
-                        <input type="radio" name="contact-page" onClick={() => setShowAboutUsPageForm(true)}/>
-                        Yes
-                    </label>
-                    <label className="radio-inline ml-4">
-                        <input type="radio" name="contact-page" onClick={() => setShowAboutUsPageForm(false)}/> 
-                        No
-                    </label>
-                </Form.Group>
-                <Form.Group>
-                    {
-                        aboutUsPageForm && 
-                        <AboutUsForm established={established} setEstablished={setEstablished} ownersBio={ownersBio} setOwnersBio={setOwnersBio}
-                        />
-                    }
-                </Form.Group>
+                })()}                
                 
-            </Form>
-
+            </Form> 
             
             <br/>
-            <Button onClick={() => setPostData({
-                "bucketName":           bucketName,
-                "templateName":         templateName,
-                "homePage": {
-                    "BUSINESS_NAME":        businessName,
-                    "BUSINESS_DESCRIPTION": businessDescription,
-                    "SLOGAN":               slogan
-                },
-                "contactPage": {
-                    "BUSINESS_NAME":        businessName,
-                    "PHONE":               phone,
-                    "EMAIL":               email,
-                    "HOURS":               hours,
-                    "LOCATION":            location
-                },
-                "aboutPage": {
-                    "BUSINESS_NAME": businessName,
-                    "BIO":           ownersBio,
-                    'ESTABLISHED':   established
+            
+            {(() => {
+                if (currentFormIndex < 2) {
+                    return <Button onClick={() => setCurrentFormIndex(currentFormIndex+1)}>
+                                Continue
+                           </Button>;
                 }
-            })}>Build Website</Button>
-      
+            })()}
+            
+            {(() => {
+                if (currentFormIndex > 0) {
+                    return <>
+                            <br/>
+                            <Button color='red' onClick={() => setCurrentFormIndex(currentFormIndex-1)}>
+                              Back
+                            </Button>
+                           </>;
+                }
+            })()}
             <br/>
             {
                 status === 200 &&
@@ -152,3 +110,24 @@ function RestaurantForm({bucketName, setPostData, status, templateName}) {
 export default RestaurantForm;
 
 
+{/* <Button onClick={() => setPostData({
+    "bucketName":           bucketName,
+    "templateName":         templateName,
+    "homePage": {
+        "BUSINESS_NAME":        businessName,
+        "BUSINESS_DESCRIPTION": businessDescription,
+        "SLOGAN":               slogan
+    },
+    "contactPage": {
+        "BUSINESS_NAME":        businessName,
+        "PHONE":               phone,
+        "EMAIL":               email,
+        "HOURS":               hours,
+        "LOCATION":            location
+    },
+    "aboutPage": {
+        "BUSINESS_NAME": businessName,
+        "BIO":           ownersBio,
+        'ESTABLISHED':   established
+    }
+})}>Build Website</Button> */}

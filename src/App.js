@@ -11,9 +11,11 @@ import DomainSelectorPage from './components/domainSelection/DomainSelectorPage'
 import TemplateSelector from './components/templateSelection/TemplateSelector';
 import SiteForm from './components/siteForm/SiteFormPage';
 import PageNotFound from './PageNotFound';
+import { useEffect } from 'react';
 
 
 function App() {
+
   return (
       <Router>
         <NavigationBar/>
