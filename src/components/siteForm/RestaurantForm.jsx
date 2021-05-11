@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { Link } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
-import SubHeader from '../common/SubHeader';
 import ContactPageForm from './restaurant-forms/ContactPageForm';
 import AboutUsForm from './restaurant-forms/AboutUsForm';
 import GeneralInfoForm from './restaurant-forms/GeneralInfoForm';
@@ -13,6 +13,7 @@ const ABOUT_FORM   = 2;
 
 function RestaurantForm({bucketName, setPostData, status, templateName}) {
     const [currentFormIndex, setCurrentFormIndex]       = useState(0);
+    const [endOfForm, setEndOfForm]                     = useState(0);
     //General Info Form Fields
     const [businessName, setBusinessName]               = useState('');
     const [businessDescription, setBusinessDescription] = useState('');
@@ -34,49 +35,49 @@ function RestaurantForm({bucketName, setPostData, status, templateName}) {
       })
 
     return (
-        <div className="d-flex flex-column justify-content-center align-items-center">
-            <SubHeader/>
-            
-            <Form>
-                {(() => {
-                    let form = null;
-                    switch (currentFormIndex) {
-                        case GENERAL_FORM:
-                            console.log('returning general form....')
-                            return <GeneralInfoForm 
-                                        businessName={businessName} 
-                                        setBusinessName={setBusinessName} 
-                                        businessDescription={businessDescription}
-                                        setBusinessDescription={setBusinessDescription}
-                                        hours={hours} 
-                                        setHours={setHours} 
-                                        location={location}
-                                        setLocation={setLocation}
-                                        slogan={slogan}
-                                        setSlogan={setSlogan}
-                                    />;
-                        case CONTACT_FORM:
-                            console.log('returning contact form....')
-                            return <ContactPageForm 
-                                        phone={phone}
-                                        setPhone={setPhone}
-                                        email={email}
-                                        setEmail={setEmail}
-                                    />;
-                        case ABOUT_FORM:
-                            console.log('returning about form....')
-                            return <AboutUsForm 
-                                        established={established}
-                                        setEstablished={setEstablished}
-                                        ownersBio={ownersBio}
-                                        setOwnersBio={setOwnersBio}
-                                    />;
-                        default:
-                            break;
-                    }
-                })()}                
-                
-            </Form> 
+        <div className="d-flex flex-column justify-content-center align-items-center mt-5">
+            <div className="container-fluid ">
+                <Form>
+                    {(() => {
+                        let form = null;
+                        switch (currentFormIndex) {
+                            case GENERAL_FORM:
+                                console.log('returning general form....')
+                                return <GeneralInfoForm 
+                                            businessName={businessName} 
+                                            setBusinessName={setBusinessName} 
+                                            businessDescription={businessDescription}
+                                            setBusinessDescription={setBusinessDescription}
+                                            hours={hours} 
+                                            setHours={setHours} 
+                                            location={location}
+                                            setLocation={setLocation}
+                                            slogan={slogan}
+                                            setSlogan={setSlogan}
+                                        />;
+                            case CONTACT_FORM:
+                                console.log('returning contact form....')
+                                return <ContactPageForm 
+                                            phone={phone}
+                                            setPhone={setPhone}
+                                            email={email}
+                                            setEmail={setEmail}
+                                        />;
+                            case ABOUT_FORM:
+                                console.log('returning about form....')
+                                return <AboutUsForm 
+                                            established={established}
+                                            setEstablished={setEstablished}
+                                            ownersBio={ownersBio}
+                                            setOwnersBio={setOwnersBio}
+                                            setEndOfForm={setEndOfForm}
+                                        />;
+                            default:
+                                break;
+                        }
+                    })()}                      
+                </Form> 
+            </div>
             
             <br/>
             
@@ -96,6 +97,19 @@ function RestaurantForm({bucketName, setPostData, status, templateName}) {
                               Back
                             </Button>
                            </>;
+                }
+            })()}
+
+            {(()=>{
+                if (endOfForm) {
+                    return <>
+                                <br/>
+                                <Link to='/images'>
+                                    <Button variant="primary">
+                                        Save
+                                    </Button>
+                                </Link>
+                            </>;
                 }
             })()}
             <br/>

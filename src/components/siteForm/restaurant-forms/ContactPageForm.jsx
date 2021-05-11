@@ -1,8 +1,17 @@
 import { Form } from 'react-bootstrap';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 
 function ContactPageForm({phone, setPhone, email, setEmail}) {
     const [contactPageForm, setShowContactPageForm] = useState(false);
+
+    const dispatch = useDispatch();
+
+    dispatch({
+        type: "ADD_BREAD_CRUMB",
+        breadCrumb: "Contact Page"
+    })
 
     return (         
         <>   

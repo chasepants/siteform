@@ -3,7 +3,6 @@ import {useState, useEffect} from 'react';
 import checkDomainNameAvailability from '../../services/api/domains';
 
 //COMPONENTS
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ProgressBar } from 'react-bootstrap';
 import DomainNameToast from './DomainToast';

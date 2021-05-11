@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Card, ProgressBar } from 'react-bootstrap';
+import { Button, Card, ProgressBar, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SubHeader from '../common/SubHeader';
 
@@ -12,8 +12,8 @@ function TemplateSelector() {
 
   dispatch({
     type: "ADD_SUB_HEADER",
-    header: "Next select the template that best suites your business"
-  })
+    header: "First select the template that best suites your business"
+  });
 
   const setTemplate = template => {
     dispatch({
@@ -35,7 +35,7 @@ function TemplateSelector() {
 
   return (
     <>
-      <ProgressBar now={66}/>
+      <ProgressBar now={0}/>
       <div className="container text-center">
           <SubHeader/>
             <div className="row">
@@ -44,8 +44,7 @@ function TemplateSelector() {
                 <Card.Body>
                   <Card.Title>Restaurant Website</Card.Title>
                   <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
+                    <div className="card-background"/>
                   </Card.Text>
                     <Link onClick={()=>{
                       setTemplate(1)
@@ -65,8 +64,7 @@ function TemplateSelector() {
                   <Card.Body>
                     <Card.Title>About Me Site</Card.Title>
                     <Card.Text>
-                      Some quick example text to build on the card title and make up the bulk of
-                      .
+                      <div className="card-background"/>
                     </Card.Text>
                       <Link onClick={()=>{
                         setTemplate(2)
