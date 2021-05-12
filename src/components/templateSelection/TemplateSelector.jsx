@@ -7,6 +7,7 @@ import SubHeader from '../common/SubHeader';
 
 function TemplateSelector() {
   const { REACT_APP_MY_ENV } = process.env;
+
   const bucketName   = useSelector(state => state.bucket);
   const progress     = useSelector(state => state.progress);
   const dispatch     = useDispatch();

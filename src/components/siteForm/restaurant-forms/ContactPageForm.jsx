@@ -1,6 +1,7 @@
 import { Form } from 'react-bootstrap';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+
 import Image from '../../../assets/imgs/restaurant-contact.png'
 
 function ContactPageForm({phone, setPhone, email, setEmail, hours, setHours}) {

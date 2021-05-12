@@ -56,7 +56,6 @@ function GeneralInfoForm({businessName, setBusinessName, businessDescription, se
                     {
                         showImages && <>
                             <ImageRow/>
-                            <br/>
                         </>
                     }
                 <Button variant="warning" onClick={() => setShowImages(!showImages)}>
