@@ -1,8 +1,9 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import RestaurantForm from './RestaurantForm';
 import AboutMeForm from './AboutMeForm';
+import Header from '../common/Header';
 import { ProgressBar } from 'react-bootstrap';
 
 function SiteForm() {             
@@ -11,9 +12,8 @@ function SiteForm() {
 
     const bucketName   = useSelector(state => state.bucket.bucketName);
     const templateName = useSelector(state => state.template.templateName);
+    const progress     = useSelector(state => state.progress);
 
-    const dispatch = useDispatch();
-    
     useEffect(()=>{
         const generateWebsiteFiles = async () => {            
             const buildSiteResult = await axios.post(
@@ -27,7 +27,7 @@ function SiteForm() {
     
     return (
         <>
-            <ProgressBar now={10}/>
+            <ProgressBar now={progress}/>
             {(() => {
                 switch (templateName) {
                     case 1:

@@ -8,7 +8,7 @@ const NavigationBar = () => {
 
     return (
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="#home">Site | Form</Navbar.Brand>
+            <Navbar.Brand href="/">Site | Form</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">

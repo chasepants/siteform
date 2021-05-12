@@ -14,10 +14,10 @@ function HomePage() {
                 breadCrumb: "template"
             })
         }}>
-                <Button variant="secondary">
-                    Get Started
-                </Button>
-            </Link>
+            <Button variant="success">
+                Get Started
+            </Button>
+        </Link>
     </div>
 }
 

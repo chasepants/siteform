@@ -5,13 +5,15 @@ import template from "./template";
 import header from "./header";
 import subHeaderReducer from './subHeader';
 import breadCrumbReducer from './breadCrumb';
+import progressReducer from './progress';
 
 const root = combineReducers({
     bucket: bucket,
     template: template,
     header: header,
     subHeaderReducer: subHeaderReducer,
-    breadCrumbs: breadCrumbReducer
+    breadCrumbs: breadCrumbReducer,
+    progress: progressReducer
 });
 
 export default root;

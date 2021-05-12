@@ -47,9 +47,7 @@ function RestaurantForm({bucketName, setPostData, status, templateName}) {
                                             businessName={businessName} 
                                             setBusinessName={setBusinessName} 
                                             businessDescription={businessDescription}
-                                            setBusinessDescription={setBusinessDescription}
-                                            hours={hours} 
-                                            setHours={setHours} 
+                                            setBusinessDescription={setBusinessDescription} 
                                             location={location}
                                             setLocation={setLocation}
                                             slogan={slogan}
@@ -62,6 +60,8 @@ function RestaurantForm({bucketName, setPostData, status, templateName}) {
                                             setPhone={setPhone}
                                             email={email}
                                             setEmail={setEmail}
+                                            hours={hours} 
+                                            setHours={setHours}
                                         />;
                             case ABOUT_FORM:
                                 console.log('returning about form....')
@@ -76,47 +76,49 @@ function RestaurantForm({bucketName, setPostData, status, templateName}) {
                                 break;
                         }
                     })()}                      
-                </Form> 
-            </div>
-            
-            <br/>
-            
-            {(() => {
-                if (currentFormIndex < 2) {
-                    return <Button onClick={() => setCurrentFormIndex(currentFormIndex+1)}>
-                                Continue
-                           </Button>;
-                }
-            })()}
-            
-            {(() => {
-                if (currentFormIndex > 0) {
-                    return <>
-                            <br/>
-                            <Button color='red' onClick={() => setCurrentFormIndex(currentFormIndex-1)}>
-                              Back
-                            </Button>
-                           </>;
-                }
-            })()}
+                </Form>             
+                <br/>
 
-            {(()=>{
-                if (endOfForm) {
-                    return <>
-                                <br/>
-                                <Link to='/images'>
-                                    <Button variant="primary">
-                                        Save
-                                    </Button>
-                                </Link>
-                            </>;
-                }
-            })()}
-            <br/>
-            {
-                status === 200 &&
-                <h4>You can visit your site <a href={`http://${bucketName}.s3-website-us-west-1.amazonaws.com`}>HERE</a></h4>
-            }
+                <div className="row">
+                    <div className="col-sm-2 offset-sm-4 text-center">
+                        {(() => {
+                            if (currentFormIndex > 0) {
+                                return <Button variant="danger" onClick={() => setCurrentFormIndex(currentFormIndex-1)}>
+                                        Back
+                                    </Button>;
+                            }
+                        })()}
+                    </div>
+                    <div className="col-sm-2 text-center">
+                        {(() => {
+                            if (currentFormIndex < 2) {
+                                return <Button variant="success" onClick={() => setCurrentFormIndex(currentFormIndex+1)}>
+                                            Continue
+                                    </Button>;
+                            }
+                        })()}
+                    </div>
+                </div>
+
+                {/* {(()=>{
+                    if (endOfForm) {
+                        return <>
+                                    <br/>
+                                    <Link to='/images'>
+                                        <Button variant="primary">
+                                            Save
+                                        </Button>
+                                    </Link>
+                                </>;
+                    }
+                })()} */}
+                <br/>
+                {/* {
+                    status === 200 &&
+                    <h4>You can visit your site <a href={`http://${bucketName}.s3-website-us-west-1.amazonaws.com`}>HERE</a></h4>
+                } */}
+            </div>
+
         </div>
     )
 }

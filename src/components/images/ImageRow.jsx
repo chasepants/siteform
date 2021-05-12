@@ -8,8 +8,8 @@ const REGION ='rapid-express-images';
 
 
 AWS.config.update({
-    accessKeyId: 'AKIASCS76JIAUFNWVFCG',
-    secretAccessKey: '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'
+    accessKeyId: '',
+    secretAccessKey: ''
 })
 
 const myBucket = new AWS.S3({
@@ -49,7 +49,8 @@ function ImageRow() {
             <div className="col-sm-2">Progress is {progress}%</div>
             <div className="col-sm-6">
                 <input type="file" onChange={handleFileInput}/>
-                <button onClick={() => uploadFile(selectedFile)}> Upload to S3</button>
+                <br/>
+                <button onClick={() => uploadFile(selectedFile)}> Upload Images</button>
             </div>
         </div>
     )

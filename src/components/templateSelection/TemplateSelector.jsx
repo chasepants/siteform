@@ -8,11 +8,22 @@ import SubHeader from '../common/SubHeader';
 function TemplateSelector() {
   const { REACT_APP_MY_ENV } = process.env;
   const bucketName   = useSelector(state => state.bucket);
+  const progress     = useSelector(state => state.progress);
   const dispatch     = useDispatch();
 
   dispatch({
     type: "ADD_SUB_HEADER",
     header: "First select the template that best suites your business"
+  });
+
+  dispatch({ 
+    type: "ADD_HEADER",
+    header: "Create Your Website"
+  });
+
+  dispatch({
+    type: "UPDATE_PROGRESS",
+    progress: 10
   });
 
   const setTemplate = template => {
@@ -35,7 +46,7 @@ function TemplateSelector() {
 
   return (
     <>
-      <ProgressBar now={0}/>
+      <ProgressBar now={progress}/>
       <div className="container text-center">
           <SubHeader/>
             <div className="row">
