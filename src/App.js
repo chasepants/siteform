@@ -13,6 +13,7 @@ import SiteForm from './components/siteForm/SiteFormPage';
 import ImageSelector from './components/images/ImageSelector';
 import HomePage from './components/HomePage';
 import PageNotFound from './PageNotFound';
+import { withAuthenticator } from '@aws-amplify/ui-react'
 
 function App() {
 
@@ -32,4 +33,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App);

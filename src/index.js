@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Amplify from "aws-amplify";
+import awsExports from "./aws-exports";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -7,6 +9,7 @@ import configureStore from './redux/configureStore';
 import {Provider as ReduxProvider} from 'react-redux';
 
 const store = configureStore();
+Amplify.configure(awsExports);
 
 ReactDOM.render(
   <React.StrictMode>
