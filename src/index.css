@@ -3,6 +3,14 @@
   font-family: 'Times New Roman', Times, serif;
 }
 
+body {
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
 .card-background {
   /* The image used */
   background-image: url(../src/assets/imgs/restaurant.png);
