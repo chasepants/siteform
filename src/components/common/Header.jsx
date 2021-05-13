@@ -6,7 +6,7 @@ const Header = () => {
     const header = useSelector(state => state.header);
 
     return (
-        <div className="container mt-3">
+        <div className="container mt-5">
             <div className="row">
                 <div className="col-sm-6 offset-sm-3 text-center">
                     <h2>{header.header}</h2>

@@ -12,6 +12,8 @@ import TemplateSelector from './components/templateSelection/TemplateSelector';
 import SiteForm from './components/siteForm/SiteFormPage';
 import ImageSelector from './components/images/ImageSelector';
 import HomePage from './components/HomePage';
+import AccountPage from './components/account/AccountPage';
+import PricingPage from './components/pricing/PricingPage';
 import PageNotFound from './PageNotFound';
 import { withAuthenticator } from '@aws-amplify/ui-react'
 
@@ -27,6 +29,8 @@ function App() {
           <Route path='/templates' component={TemplateSelector}/> 
           <Route path='/site-form' component={SiteForm}/>  
           <Route path='/images' component={ImageSelector}/>  
+          <Route path='/account' component={AccountPage}/>
+          <Route path='/pricing' component={PricingPage}/>
           <Route component={PageNotFound} />
         </Switch> 
       </Router>

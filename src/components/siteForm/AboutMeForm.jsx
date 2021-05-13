@@ -9,7 +9,6 @@ function AboutMeForm({bucketName, setPostData, status, templateName}) {
 
     return (
         <div className="d-flex flex-column justify-content-center align-items-center p-5">
-            <h1>Siteform</h1>
             <p>Tell us about you</p>
             <label htmlFor="fname">Name:</label><br/>
             <input onChange={event => setBusinessName(event.target.value)} value={businessName} type="text" id="fname" name="fname"/><br/>
