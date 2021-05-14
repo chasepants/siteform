@@ -50,6 +50,6 @@ function SiteForm() {
     
 }
 
-export default withAuthenticator(SiteForm);
+export default SiteForm;
 
 

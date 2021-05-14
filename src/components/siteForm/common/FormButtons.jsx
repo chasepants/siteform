@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
 function FormButtons() {
@@ -41,6 +42,17 @@ function FormButtons() {
                                     }}>
                                     Continue
                                 </Button>;
+                        }
+                    })()}
+                </div>
+                <div className="col-sm-2 text-center">
+                    {(() => {
+                        if (isLastForm) {
+                            return (<Link to='/choose-plan'>
+                                    <Button variant="success">
+                                        Save
+                                    </Button>
+                                </Link>);
                         }
                     })()}
                 </div>

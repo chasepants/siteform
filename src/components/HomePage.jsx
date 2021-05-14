@@ -14,7 +14,7 @@ function HomePage() {
     dispatch({ 
         type: "ADD_HEADER",
         header: "Create Your Site Today"
-      });
+    });
 
     return (
         <div className="container mt-5 mb-5">

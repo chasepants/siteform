@@ -14,6 +14,7 @@ import ImageSelector from './components/images/ImageSelector';
 import HomePage from './components/HomePage';
 import AccountPage from './components/account/AccountPage';
 import PricingPage from './components/pricing/PricingPage';
+import SelectPricing from './components/pricing/SelectPricing';
 import MySites from './components/account/MySites';
 import PageNotFound from './PageNotFound';
 
@@ -32,6 +33,7 @@ function App() {
           <Route path='/account' component={AccountPage}/>
           <Route path='/sites' component={MySites}/>
           <Route path='/pricing' component={PricingPage}/>
+          <Route path='/choose-plan' component={SelectPricing}/>
           <Route component={PageNotFound} />
         </Switch> 
       </Router>

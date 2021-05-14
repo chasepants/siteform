@@ -1,4 +1,4 @@
-export default function formReducer(state = {isFirstForm: true, isLastForm: false, formIndex: 0}, action) {
+export default function formReducer(state = {isFirstForm: true, isLastForm: false, formIndex: 0, formComplete: false}, action) {
     switch (action.type) {
         case 'UPDATE_FORM_INDEX':
             return {
@@ -15,6 +15,11 @@ export default function formReducer(state = {isFirstForm: true, isLastForm: fals
                 ...state,
                 isLastForm: action.isLastForm
             } 
+        case 'COMPLETED_FORM':
+            return {
+                ...state,
+                formComplete: action.formComplete
+            }
         default:
             return state;
     }

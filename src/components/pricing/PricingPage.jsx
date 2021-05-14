@@ -1,15 +1,25 @@
 import { Button, Card } from 'react-bootstrap';
-
-import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 function PricingPage() {
     const dispatch = useDispatch();
+
+    const formComplete = useSelector(state => state.form.formComplete);
 
     dispatch({ 
         type: "ADD_HEADER",
         header: "Pricing"
     });
     
+    const choosePricing = _pricing => {
+        dispatch({ 
+            type: "ADD_PRICING",
+            pricing: _pricing
+        });
+    }
+
+    const nextPage = formComplete ? "/domain" : "/templates"
 
     return <div className="container mt-5">
         <div className="row mt-5 justify-content-between">
@@ -29,7 +39,9 @@ function PricingPage() {
                             </ul>
                         </Card.Text>
                         <div className="text-center">
-                            <Button variant="primary">Go somewhere</Button>
+                            <Link to={nextPage}>
+                                <Button onClick={() => choosePricing("free")} variant="primary">Select</Button> 
+                            </Link>
                         </div>
                     </Card.Body>
                 </Card>
@@ -50,7 +62,9 @@ function PricingPage() {
                             </ul>
                         </Card.Text>
                         <div className="text-center">
-                            <Button variant="primary">Go somewhere</Button>
+                            <Link to={ nextPage }>
+                                <Button onClick={() => choosePricing("basic")} variant="primary">Select</Button>
+                            </Link>
                         </div>
                     </Card.Body>
                 </Card>
@@ -71,7 +85,9 @@ function PricingPage() {
                             </ul>
                         </Card.Text>
                         <div className="text-center">
-                            <Button variant="primary">Go somewhere</Button>
+                            <Link to={ nextPage }>
+                                <Button  onClick={() => choosePricing("premium")} variant="primary">Select</Button>
+                            </Link>
                         </div>
                     </Card.Body>
                 </Card>
