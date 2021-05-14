@@ -35,7 +35,7 @@ function RestaurantForm({bucketName, setPostData, status, templateName}) {
     })
 
     return (
-        <div className="container-fluid h-100 mt-3">
+        <div className="container h-100 mt-5">
             <div className="d-flex flex-column justify-content-between h-75">
                 <Form>
                     {(() => {

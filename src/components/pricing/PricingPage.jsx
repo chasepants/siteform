@@ -24,9 +24,13 @@ function PricingPage() {
                                 <li class="list-group-item">No Custom Domain Names</li>
                                 <li class="list-group-item">1 edit a month</li>
                                 <li class="list-group-item">Morbi leo risus</li>
+                                <li class="list-group-item">Choose from 10 templates</li>
+                                <li class="list-group-item">No Tech Support</li>
                             </ul>
                         </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
+                        <div className="text-center">
+                            <Button variant="primary">Go somewhere</Button>
+                        </div>
                     </Card.Body>
                 </Card>
             </div>
@@ -42,9 +46,12 @@ function PricingPage() {
                                 <li class="list-group-item">Use Your Own Domain Name</li>
                                 <li class="list-group-item">5 edits a month</li>
                                 <li class="list-group-item">Choose from over 20 templates</li>
+                                <li class="list-group-item">Tech Support</li>
                             </ul>
                         </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
+                        <div className="text-center">
+                            <Button variant="primary">Go somewhere</Button>
+                        </div>
                     </Card.Body>
                 </Card>
             </div>
@@ -63,7 +70,9 @@ function PricingPage() {
                                 <li class="list-group-item">Tech Support</li>
                             </ul>
                         </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
+                        <div className="text-center">
+                            <Button variant="primary">Go somewhere</Button>
+                        </div>
                     </Card.Body>
                 </Card>
             </div>

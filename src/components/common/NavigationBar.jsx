@@ -1,11 +1,22 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, {useState} from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import Logout from './Logout';
+import Login from './Login';
+
+import { Auth } from 'aws-amplify';
+import { useEffect } from 'react';
 
 const NavigationBar = () => {
-    const breadCrumbs = useSelector(state => state.breadCrumbs);
+    const [user, setUser] = useState(false);
 
+    Auth.currentSession()
+        .then(data => setUser(true))
+        .catch(err => setUser(false));
+
+    useEffect(() => {
+        console.log(user);
+    }, [user])    
+    
     return (
         <Navbar bg="light" className="justify-content-between" expand="lg">
             <div id="site-logo">           
@@ -24,10 +35,36 @@ const NavigationBar = () => {
                         <Nav.Link href="/pricing">
                         Pricing
                         </Nav.Link>
-                        <Nav.Link href="/account">
-                        Account
-                        </Nav.Link>
-                    </Nav>            
+                        {
+                            user && (
+                                <Nav.Link href="/sites">
+                                   Sites
+                                </Nav.Link>
+                            )
+                        }
+                        {
+                            user && (
+                                <Nav.Link href="/account">
+                                   Account
+                                </Nav.Link>
+                            )
+                        }
+                        {
+                            !user && (
+                                <Nav>
+                                   <Login/>
+                                </Nav>
+                            )
+                        }
+                        {
+                            user && (
+                                <Nav>
+                                    <Logout/>
+                                </Nav>
+                            )
+                        }
+                        
+                    </Nav>           
                 </Navbar.Collapse>
             </div>
         </Navbar>

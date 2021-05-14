@@ -7,10 +7,6 @@ body {
   height: 100%;
 }
 
-html {
-  height: 100%;
-}
-
 .card-background {
   /* The image used */
   background-image: url(../src/assets/imgs/restaurant.png);
@@ -37,6 +33,14 @@ html {
   background-size: cover;
 }
 
+.form-card {
+  box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+html {
+  height: 100%;
+}
+
 .progress-bar {
   display: flex;
   flex-direction: column;
@@ -47,4 +51,8 @@ html {
   white-space: nowrap;
   background-color: black;
   transition: width .6s ease;
+}
+
+.site-col {
+  height: 100px;
 }

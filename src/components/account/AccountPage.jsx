@@ -1,6 +1,6 @@
 import { Accordion, Button, Card } from 'react-bootstrap';
-
 import { useDispatch } from 'react-redux';
+import { withAuthenticator } from '@aws-amplify/ui-react'
 
 function AccountPage() {
     const dispatch = useDispatch();
@@ -8,8 +8,7 @@ function AccountPage() {
     dispatch({ 
         type: "ADD_HEADER",
         header: "Account Details"
-      });
-    
+    });
 
     return <div className="container">
         <div className="row mt-5">
@@ -148,7 +147,9 @@ function AccountPage() {
                 </Accordion>
             </div>
         </div>
+        <br/> <br/>
+        <br/> <br/> 
     </div>
 }
 
-export default AccountPage;
+export default withAuthenticator(AccountPage);

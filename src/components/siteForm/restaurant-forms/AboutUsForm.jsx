@@ -33,7 +33,7 @@ function AboutUsForm({established, setEstablished, ownersBio, setOwnersBio}) {
 
     return (         
         <div className="row">  
-            <div className="col-sm-4">
+            <div className="col-sm-4 form-card p-3">
                 {
                     aboutUsPageForm && 
                     <>

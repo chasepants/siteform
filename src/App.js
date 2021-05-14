@@ -14,8 +14,8 @@ import ImageSelector from './components/images/ImageSelector';
 import HomePage from './components/HomePage';
 import AccountPage from './components/account/AccountPage';
 import PricingPage from './components/pricing/PricingPage';
+import MySites from './components/account/MySites';
 import PageNotFound from './PageNotFound';
-import { withAuthenticator } from '@aws-amplify/ui-react'
 
 function App() {
 
@@ -30,6 +30,7 @@ function App() {
           <Route path='/site-form' component={SiteForm}/>  
           <Route path='/images' component={ImageSelector}/>  
           <Route path='/account' component={AccountPage}/>
+          <Route path='/sites' component={MySites}/>
           <Route path='/pricing' component={PricingPage}/>
           <Route component={PageNotFound} />
         </Switch> 
@@ -37,4 +38,4 @@ function App() {
   );
 }
 
-export default withAuthenticator(App);
+export default App;

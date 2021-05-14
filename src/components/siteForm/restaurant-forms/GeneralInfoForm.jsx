@@ -16,7 +16,7 @@ function GeneralInfoForm({businessName, setBusinessName, businessDescription, se
 
     return (         
         <div className="row">  
-            <div className="col-sm-4">
+            <div className="col-sm-4 form-card p-3">
                 <h3>Home Page</h3>
                 <small className="mb-2 text-muted form-text">Match the form names to the names on the example image on the right</small>
                 {

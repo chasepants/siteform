@@ -1,10 +1,10 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import RestaurantForm from './RestaurantForm';
 import AboutMeForm from './AboutMeForm';
-import Header from '../common/Header';
 import { ProgressBar } from 'react-bootstrap';
+import { withAuthenticator } from '@aws-amplify/ui-react'
 
 function SiteForm() {             
     const [postData, setPostData] = useState({});
@@ -13,6 +13,13 @@ function SiteForm() {
     const bucketName   = useSelector(state => state.bucket.bucketName);
     const templateName = useSelector(state => state.template.templateName);
     const progress     = useSelector(state => state.progress);
+
+    const dispatch = useDispatch();
+
+    dispatch({ 
+        type: "ADD_HEADER",
+        header: "Create Your Site"
+      });
 
     useEffect(()=>{
         const generateWebsiteFiles = async () => {            
@@ -27,7 +34,7 @@ function SiteForm() {
     
     return (
         <>
-            <ProgressBar now={progress}/>
+            <ProgressBar className="mt-3" now={progress}/>
             {(() => {
                 switch (templateName) {
                     case 1:
@@ -43,6 +50,6 @@ function SiteForm() {
     
 }
 
-export default SiteForm;
+export default withAuthenticator(SiteForm);
 
 

@@ -33,7 +33,7 @@ function ContactPageForm({phone, setPhone, email, setEmail, hours, setHours}) {
 
     return (   
         <div className="row">  
-            <div className="col-sm-4">
+            <div className="col-sm-4 form-card p-3">
                 {
                     contactPageForm && 
                     <>
