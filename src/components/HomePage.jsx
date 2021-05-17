@@ -7,7 +7,6 @@ import FormImage from '../assets/imgs/form.png';
 import Images from '../assets/imgs/images.png';
 import Pricing from '../assets/imgs/pricing.png';
 
-
 function HomePage() {
     const dispatch = useDispatch();
 
@@ -57,3 +56,42 @@ function HomePage() {
 }
 
 export default HomePage;
+
+
+
+
+// import { Authenticator, SignIn, SignUp, ConfirmSignUp, Greetings } from 'aws-amplify-react';
+
+
+
+// const AlwaysOn = (props) => {
+//     return (
+//         <div>
+//             <div>I am always here to show current auth state: {props.authState}</div>
+//             <button onClick={() => props.onStateChange('signUp')}>Show Sign Up</button>
+//         </div>
+//     )
+// }
+
+
+// const handleAuthStateChange = (state) => {
+//     if (state === 'signedIn') {
+//         console.log(state);
+//     } else {
+//         console.log(state);
+//     }
+// }
+
+
+
+ {/* <div className="row">
+            <div className="col-sm-6 offset-sm-3 justify-content-center">
+            <Authenticator hideDefault={true} onStateChange={handleAuthStateChange}>
+                <SignIn/>
+                <SignUp/>
+                <ConfirmSignUp/>
+                <Greetings/>
+                <AlwaysOn/>
+            </Authenticator>
+            </div>
+    </div> */}

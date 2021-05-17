@@ -1,10 +1,9 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import RestaurantForm from './RestaurantForm';
+import RestaurantForm from './restaurant/RestaurantForm';
 import AboutMeForm from './AboutMeForm';
 import { ProgressBar } from 'react-bootstrap';
-import { withAuthenticator } from '@aws-amplify/ui-react'
 
 function SiteForm() {             
     const [postData, setPostData] = useState({});
@@ -34,7 +33,7 @@ function SiteForm() {
     
     return (
         <>
-            <ProgressBar className="mt-3" now={progress}/>
+            <ProgressBar now={progress}/>
             {(() => {
                 switch (templateName) {
                     case 1:

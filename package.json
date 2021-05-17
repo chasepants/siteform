@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.2",
     "aws-amplify": "^3.3.26",
+    "aws-amplify-react": "^5.0.0",
     "aws-sdk": "^2.903.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",

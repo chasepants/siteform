@@ -48,16 +48,13 @@ function ImageRow() {
     }
 
     return (
-        <div className="row">
-            <div className="col-sm-2">Progress is {progress}%</div>
-            <div className="col-sm-6">
-                <input type="file" onChange={handleFileInput}/>
-                <br/>
-                <button onClick={e => {
-                    e.preventDefault();
-                    uploadFile(selectedFile);    
-                }}> Upload Images</button>
-            </div>
+        <div className="d-flex flex-column h-100">
+            <div className="mt-2">Progress is {progress}%</div>
+            <input className="mt-2" type="file" onChange={handleFileInput}/>
+            <button  className="mt-2 w-50" onClick={e => {
+                e.preventDefault();
+                uploadFile(selectedFile);    
+            }}> Upload </button>
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import { Auth } from 'aws-amplify';
 import { Button } from 'react-bootstrap';
+import { withAuthenticator } from '@aws-amplify/ui-react'
 
 function Logout() {
     async function signOut() {
@@ -15,4 +16,4 @@ function Logout() {
     return <Button onClick={() => signOut()}>Logout</Button>
 }
 
-export default Logout;
+export default withAuthenticator(Logout);

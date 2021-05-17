@@ -1,6 +1,9 @@
 import { Accordion, Button, Card } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { withAuthenticator } from '@aws-amplify/ui-react'
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import { useEffect } from 'react';
+import { Auth } from 'aws-amplify';
+
 
 function AccountPage() {
     const dispatch = useDispatch();
@@ -8,6 +11,13 @@ function AccountPage() {
     dispatch({ 
         type: "ADD_HEADER",
         header: "Account Details"
+    });
+
+    useEffect(() => {
+        Auth.currentSession()
+        .then(data => dispatch({type: 'UPDATE_AUTH', auth: true}))
+        .catch(err => dispatch({type: 'UPDATE_AUTH', auth: false}));
+               
     });
 
     return <div className="container">

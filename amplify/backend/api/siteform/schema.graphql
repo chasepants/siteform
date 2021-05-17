@@ -1,0 +1,7 @@
+type User @model 
+@auth(rules: [ {allow: owner } ])
+@key(name: "byEmail", fields: ["email", "id"], queryField: "getUserByEmail") {
+  id: ID!
+  name: String!
+  email: String!
+}

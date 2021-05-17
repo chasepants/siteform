@@ -7,6 +7,7 @@ import breadCrumbReducer from './breadCrumb';
 import progressReducer from './progress';
 import formReducer from './form';
 import pricingReducer from './pricing';
+import authReducer from './auth';
 
 const root = combineReducers({
     bucket: bucket,
@@ -16,7 +17,8 @@ const root = combineReducers({
     breadCrumbs: breadCrumbReducer,
     progress: progressReducer,
     form: formReducer,
-    pricing: pricingReducer
+    pricing: pricingReducer,
+    auth: authReducer
 });
 
 export default root;

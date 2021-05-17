@@ -10,11 +10,16 @@ function FormButtons() {
     const isFirstForm = useSelector(state => state.form.isFirstForm);
     const formIndex   = useSelector(state => state.form.formIndex);
 
-    return <div className="row">
-                <div className="col-sm-2 offset-sm-4 text-center">
-                    {(() => {
-                        if (!isFirstForm) {
-                            return <Button variant="danger" onClick={() => {
+    let classes = "col-sm-4 offset-sm-4 d-flex pl-5 pr-5";
+    classes += formIndex > 0 ? " justify-content-between" : " justify-content-end";
+
+    return (
+        <div className="row mt-3">
+            <div className={classes}>
+                {(() => {
+                    if (!isFirstForm) {
+                        return (
+                            <Button variant="danger" onClick={() => {
                                 if (formIndex == 1) {
                                     dispatch({
                                         type: "UPDATE_IS_FIRST_FORM",
@@ -27,36 +32,38 @@ function FormButtons() {
                                 })
                             }}>
                                     Back
-                            </Button>;
-                        }
-                    })()}
-                </div>
-                <div className="col-sm-2 text-center">
-                    {(() => {
-                        if (!isLastForm) {
-                            return <Button variant="success" onClick={() => {
-                                        dispatch({
-                                            type: "UPDATE_FORM_INDEX",
-                                            formIndex: formIndex+1
-                                        })
-                                    }}>
-                                    Continue
-                                </Button>;
-                        }
-                    })()}
-                </div>
-                <div className="col-sm-2 text-center">
-                    {(() => {
-                        if (isLastForm) {
-                            return (<Link to='/choose-plan'>
-                                    <Button variant="success">
-                                        Save
-                                    </Button>
-                                </Link>);
-                        }
-                    })()}
-                </div>
+                            </Button>
+                        );
+                    }
+                })()}
+                {(() => {
+                    if (!isLastForm) {
+                        return (
+                            <Button variant="success" onClick={() => {
+                                dispatch({
+                                    type: "UPDATE_FORM_INDEX",
+                                    formIndex: formIndex+1
+                                })
+                            }}>
+                                Continue
+                            </Button>
+                        );
+                    }
+                })()}
+                {(() => {
+                    if (isLastForm) {
+                        return (
+                            <Link to='/choose-plan'>
+                                <Button variant="success">
+                                    Save
+                                </Button>
+                            </Link>
+                        );
+                    }
+                })()}
             </div>
+        </div>
+    )
 }
 
 export default FormButtons;

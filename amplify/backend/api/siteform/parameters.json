@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "siteform",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authsiteformb6955b66",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

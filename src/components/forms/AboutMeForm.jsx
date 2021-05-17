@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState } from 'react';
 
 function AboutMeForm({bucketName, setPostData, status, templateName}) {
     const [businessName, setBusinessName]               = useState('');

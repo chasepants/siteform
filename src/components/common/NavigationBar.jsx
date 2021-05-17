@@ -1,21 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import Logout from './Logout';
 import Login from './Login';
-
-import { Auth } from 'aws-amplify';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const NavigationBar = () => {
-    const [user, setUser] = useState(false);
-
-    Auth.currentSession()
-        .then(data => setUser(true))
-        .catch(err => setUser(false));
-
-    useEffect(() => {
-        console.log(user);
-    }, [user])    
+    const auth = useSelector(state => state.auth);    
     
     return (
         <Navbar bg="light" className="justify-content-between" expand="lg">
@@ -29,35 +19,36 @@ const NavigationBar = () => {
                         <Nav.Link href="/templates">
                         Templates
                         </Nav.Link>
-                        <Nav.Link href="/help">
-                        Help
+                        <Nav.Link href="/domains">
+                        Domains
                         </Nav.Link>
                         <Nav.Link href="/pricing">
                         Pricing
                         </Nav.Link>
+                        
                         {
-                            user && (
+                            auth && (
                                 <Nav.Link href="/sites">
                                    Sites
                                 </Nav.Link>
                             )
                         }
                         {
-                            user && (
+                            auth && (
                                 <Nav.Link href="/account">
                                    Account
                                 </Nav.Link>
                             )
                         }
                         {
-                            !user && (
+                            !auth && (
                                 <Nav>
                                    <Login/>
                                 </Nav>
                             )
                         }
                         {
-                            user && (
+                            auth && (
                                 <Nav>
                                     <Logout/>
                                 </Nav>
