@@ -49,14 +49,14 @@ export default RestaurantForm;
 
 
 
- {/* {
-                    status === 200 &&
-                    <h4>You can visit your site <a href={`http://${bucketName}.s3-website-us-west-1.amazonaws.com`}>HERE</a></h4>
-                } */}
+/* {
+    status === 200 &&
+    <h4>You can visit your site <a href={`http://${bucketName}.s3-website-us-west-1.amazonaws.com`}>HERE</a></h4>
+} */
 
 
 
-{/* <Button onClick={() => setPostData({
+/* <Button onClick={() => setPostData({
     "bucketName":           bucketName,
     "templateName":         templateName,
     "homePage": {
@@ -76,4 +76,4 @@ export default RestaurantForm;
         "BIO":           ownersBio,
         'ESTABLISHED':   established
     }
-})}>Build Website</Button> */}
+})}>Build Website</Button> */

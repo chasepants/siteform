@@ -4,6 +4,7 @@ import {
   Route, BrowserRouter as Router, Switch,
 } from "react-router-dom";
 
+
 /*COMPONENTS*/
 import NavigationBar from './components/common/NavigationBar';
 import Header from './components/common/Header';
@@ -18,9 +19,10 @@ import SelectPricing from './components/pricing/SelectPricing';
 import MySites from './components/account/MySites';
 import AccountForm from './components/account/AccountForm';
 import PageNotFound from './PageNotFound';
+import LoginPage from './components/LoginPage';
+import RequireAuth from './components/wrappers/RequireAuth';
 
 function App() {
-
   return (
       <Router>
         <NavigationBar/>
@@ -28,15 +30,16 @@ function App() {
         <Switch>
           <Route exact path='/' component={HomePage}/>
           <Route path='/domains' component={DomainSelectorPage}/>
+          <Route path='/login' component={LoginPage}/>
           <Route path='/templates' component={TemplateSelector}/> 
           <Route path='/site-form' component={SiteForm}/>  
           <Route path='/images' component={ImageSelector}/>  
-          <Route path='/account' component={AccountPage}/>
-          <Route path='/sites' component={MySites}/>
+          <Route path='/account' component={RequireAuth(AccountPage)}/>
+          <Route path='/sites' component={RequireAuth(MySites)}/>
           <Route path='/pricing' component={PricingPage}/>
           <Route path='/choose-plan' component={SelectPricing}/>
           <Route path='/account-form' component={AccountForm}/>
-          <Route component={PageNotFound} />
+          <Route component={PageNotFound}/>
         </Switch> 
       </Router>
   );

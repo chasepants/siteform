@@ -1,14 +1,14 @@
 import {useEffect} from 'react';
-import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
+// import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function TemplateSelector() {
-  const { REACT_APP_MY_ENV } = process.env;
+  // const { REACT_APP_MY_ENV } = process.env;
 
-  const bucketName   = useSelector(state => state.bucket);
-  const progress     = useSelector(state => state.progress);
+  // const bucketName   = useSelector(state => state.bucket);
+  // const progress     = useSelector(state => state.progress);
   const dispatch     = useDispatch();
 
   dispatch({ 
@@ -23,15 +23,15 @@ function TemplateSelector() {
     });
   }
 
-  useEffect(async ()=>{
-    if (REACT_APP_MY_ENV !== 'development') {
-      console.log('creating bucket....')
-      const createBucketResult = await axios.get(
-        'https://prt08pyot2.execute-api.us-west-1.amazonaws.com/prod/createBucket?bucketName='+bucketName
-      );
-    } else {
-      console.log('skipping bucket creation')
-    }
+  useEffect(()=>{
+    // if (REACT_APP_MY_ENV !== 'development') {
+    //   console.log('creating bucket....')
+    //   const createBucketResult = await axios.get(
+    //     'https://prt08pyot2.execute-api.us-west-1.amazonaws.com/prod/createBucket?bucketName='+bucketName
+    //   );
+    // } else {
+    //   console.log('skipping bucket creation')
+    // }
   })
 
   return (

@@ -30,7 +30,7 @@ function ContactPageForm() {
         <div className="row mt-3">  
             <FormCard formPageName="Contact" defaultAddPage={false} formField="restaurant-about-us-page"/>
             <div className="col-sm-6 offset-sm-2 justify-content-center d-flex align-items-center">
-                <img className="img-fluid" src={Image} />
+                <img alt="template" className="img-fluid" src={Image} />
             </div>
         </div> 
     )

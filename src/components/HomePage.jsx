@@ -1,4 +1,4 @@
-import { Button, Form, Image } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -21,13 +21,13 @@ function HomePage() {
                 <div className="col-sm-6 offset-sm-3 justify-content-center">
                     <ol>
                         <li>Choose a template that matches your business</li>
-                        <img className="img-fluid mt-3" src={TemplateImage} />
+                        <img alt="template" className="img-fluid mt-3" src={TemplateImage} />
                         <li className="mt-3">Fill out a few forms to tell us what to put on each page</li>
-                        <img className="img-fluid mt-3" src={FormImage} />
+                        <img alt="template" className="img-fluid mt-3" src={FormImage} />
                         <li className="mt-3">In each form you can up load an image or choose from our image gallery</li>
-                        <img className="img-fluid mt-3" src={Images} />
+                        <img alt="template" className="img-fluid mt-3" src={Images} />
                         <li className="mt-3">Then choose a plan that suits your site</li>
-                        <img className="img-fluid mt-3" src={Pricing} />
+                        <img alt="template" className="img-fluid mt-3" src={Pricing} />
                         <li>If you chose a paid plan you can either transfer in a custom domain or buy a new domain from our site</li>
                     </ol>
                 </div>
@@ -56,42 +56,3 @@ function HomePage() {
 }
 
 export default HomePage;
-
-
-
-
-// import { Authenticator, SignIn, SignUp, ConfirmSignUp, Greetings } from 'aws-amplify-react';
-
-
-
-// const AlwaysOn = (props) => {
-//     return (
-//         <div>
-//             <div>I am always here to show current auth state: {props.authState}</div>
-//             <button onClick={() => props.onStateChange('signUp')}>Show Sign Up</button>
-//         </div>
-//     )
-// }
-
-
-// const handleAuthStateChange = (state) => {
-//     if (state === 'signedIn') {
-//         console.log(state);
-//     } else {
-//         console.log(state);
-//     }
-// }
-
-
-
- {/* <div className="row">
-            <div className="col-sm-6 offset-sm-3 justify-content-center">
-            <Authenticator hideDefault={true} onStateChange={handleAuthStateChange}>
-                <SignIn/>
-                <SignUp/>
-                <ConfirmSignUp/>
-                <Greetings/>
-                <AlwaysOn/>
-            </Authenticator>
-            </div>
-    </div> */}

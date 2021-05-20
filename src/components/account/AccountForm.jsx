@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { withAuthenticator } from '@aws-amplify/ui-react';
 import { API, graphqlOperation, Auth } from 'aws-amplify'
 import { createUser } from '../../graphql/mutations'
 import { getUserByEmail } from '../../graphql/queries'
@@ -24,9 +23,9 @@ const AccountForm = () => {
         console.log(user);
         const userData = await API.graphql(graphqlOperation(getUserByEmail, {email: "chase.parks94@gmail.com"}))
         console.log(userData);
-        // const users = userData.data.listUsers.items;
-        // console.log(users);
-        // setUsers(users)
+        const users = userData.data.getUserByEmail.items;
+        console.log(users);
+        setUsers(users)
     } catch (err) { console.log(err) }
   }
 
@@ -79,4 +78,4 @@ const styles = {
   hr: { width: '100%', height: 1 }
 }
 
-export default withAuthenticator(AccountForm)
+export default AccountForm;

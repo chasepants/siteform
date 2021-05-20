@@ -1,6 +1,5 @@
-import { Accordion, Button, Card } from 'react-bootstrap';
+// import { Accordion, Button, Card } from 'react-b;ootstrap';
 import { useDispatch } from 'react-redux';
-import { withAuthenticator } from '@aws-amplify/ui-react'
 import SiteOne from '../../assets/imgs/restaurant.png';
 
 function MySites() {
@@ -23,4 +22,4 @@ function MySites() {
     </div>
 }
 
-export default withAuthenticator(MySites);
+export default MySites;

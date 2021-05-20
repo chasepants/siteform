@@ -20,7 +20,7 @@ function FormButtons() {
                     if (!isFirstForm) {
                         return (
                             <Button variant="danger" onClick={() => {
-                                if (formIndex == 1) {
+                                if (formIndex === 1) {
                                     dispatch({
                                         type: "UPDATE_IS_FIRST_FORM",
                                         isFirstForm: true
@@ -67,16 +67,3 @@ function FormButtons() {
 }
 
 export default FormButtons;
-
-{/* {(()=>{
-                    if (endOfForm) {
-                        return <>
-                                    <br/>
-                                    <Link to='/images'>
-                                        <Button variant="primary">
-                                            Save
-                                        </Button>
-                                    </Link>
-                                </>;
-                    }
-                })()} */}
