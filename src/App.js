@@ -19,7 +19,7 @@ import SelectPricing from './components/pricing/SelectPricing';
 import MySites from './components/account/MySites';
 import AccountForm from './components/account/AccountForm';
 import PageNotFound from './PageNotFound';
-import LoginPage from './components/LoginPage';
+import LoginPage from './components/login/LoginPage';
 import RequireAuth from './components/wrappers/RequireAuth';
 
 function App() {

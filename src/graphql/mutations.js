@@ -11,6 +11,9 @@ export const createUser = /* GraphQL */ `
       first_name
       last_name
       email
+      sites {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -27,6 +30,9 @@ export const updateUser = /* GraphQL */ `
       first_name
       last_name
       email
+      sites {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -43,6 +49,57 @@ export const deleteUser = /* GraphQL */ `
       first_name
       last_name
       email
+      sites {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const createSite = /* GraphQL */ `
+  mutation CreateSite(
+    $input: CreateSiteInput!
+    $condition: ModelSiteConditionInput
+  ) {
+    createSite(input: $input, condition: $condition) {
+      id
+      userID
+      domain
+      bucket
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateSite = /* GraphQL */ `
+  mutation UpdateSite(
+    $input: UpdateSiteInput!
+    $condition: ModelSiteConditionInput
+  ) {
+    updateSite(input: $input, condition: $condition) {
+      id
+      userID
+      domain
+      bucket
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteSite = /* GraphQL */ `
+  mutation DeleteSite(
+    $input: DeleteSiteInput!
+    $condition: ModelSiteConditionInput
+  ) {
+    deleteSite(input: $input, condition: $condition) {
+      id
+      userID
+      domain
+      bucket
       createdAt
       updatedAt
       owner

@@ -5,4 +5,14 @@ type User @model
   first_name: String!
   last_name: String!
   email: String!
+  sites: [Site] @connection(keyName: "byUser", fields: ["id"])
+}
+
+type Site @model
+@auth(rules: [ {allow: owner } ])
+@key(name: "byUser", fields: ["userID"], queryField: "getSiteByUser") {
+  id: ID!
+  userID: ID!
+  domain: String!
+  bucket: String!
 }

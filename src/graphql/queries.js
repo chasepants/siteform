@@ -8,6 +8,9 @@ export const getUser = /* GraphQL */ `
       first_name
       last_name
       email
+      sites {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -26,6 +29,39 @@ export const listUsers = /* GraphQL */ `
         first_name
         last_name
         email
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getSite = /* GraphQL */ `
+  query GetSite($id: ID!) {
+    getSite(id: $id) {
+      id
+      userID
+      domain
+      bucket
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listSites = /* GraphQL */ `
+  query ListSites(
+    $filter: ModelSiteFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSites(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        userID
+        domain
+        bucket
         createdAt
         updatedAt
         owner
@@ -56,6 +92,34 @@ export const getUserByEmail = /* GraphQL */ `
         first_name
         last_name
         email
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getSiteByUser = /* GraphQL */ `
+  query GetSiteByUser(
+    $userID: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelSiteFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getSiteByUser(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userID
+        domain
+        bucket
         createdAt
         updatedAt
         owner
