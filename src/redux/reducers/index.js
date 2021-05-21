@@ -8,6 +8,7 @@ import progressReducer from './progress';
 import formReducer from './form';
 import pricingReducer from './pricing';
 import authReducer from './auth';
+import userReducer from './user';
 
 const root = combineReducers({
     bucket: bucket,
@@ -18,7 +19,8 @@ const root = combineReducers({
     progress: progressReducer,
     form: formReducer,
     pricing: pricingReducer,
-    auth: authReducer
+    auth: authReducer,
+    user: userReducer
 });
 
 export default root;

@@ -6,8 +6,6 @@ import {
 
 
 /*COMPONENTS*/
-import NavigationBar from './components/common/NavigationBar';
-import Header from './components/common/Header';
 import DomainSelectorPage from './components/domains/DomainSelectorPage';
 import TemplateSelector from './components/templateSelection/TemplateSelector';
 import SiteForm from './components/forms/SiteFormPage';
@@ -21,20 +19,19 @@ import AccountForm from './components/account/AccountForm';
 import PageNotFound from './PageNotFound';
 import LoginPage from './components/login/LoginPage';
 import RequireAuth from './components/wrappers/RequireAuth';
+import AddHeader from './components/wrappers/AddHeader';
 
 function App() {
   return (
       <Router>
-        <NavigationBar/>
-        <Header/>
         <Switch>
-          <Route exact path='/' component={HomePage}/>
+          <Route exact path='/' component={AddHeader(HomePage)}/>
           <Route path='/domains' component={DomainSelectorPage}/>
           <Route path='/login' component={LoginPage}/>
           <Route path='/templates' component={TemplateSelector}/> 
           <Route path='/site-form' component={SiteForm}/>  
           <Route path='/images' component={ImageSelector}/>  
-          <Route path='/account' component={RequireAuth(AccountPage)}/>
+          <Route path='/account' component={AddHeader(RequireAuth(AccountPage))}/>
           <Route path='/sites' component={RequireAuth(MySites)}/>
           <Route path='/pricing' component={PricingPage}/>
           <Route path='/choose-plan' component={SelectPricing}/>

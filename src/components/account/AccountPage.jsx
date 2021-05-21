@@ -1,5 +1,5 @@
 import { Accordion, Button, Card } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function AccountPage() {
     const dispatch = useDispatch();
@@ -8,6 +8,9 @@ function AccountPage() {
         type: "ADD_HEADER",
         header: "Account Details"
     });
+
+    const user = useSelector(state => state.user);
+    console.log(user);
 
     return (
         <div className="container">
@@ -25,18 +28,18 @@ function AccountPage() {
                                     <table class="table">
                                         <tbody>
                                             <tr>
+                                                <th scope="row">Name:</th>
+                                                <td>{user.first_name} {user.last_name}</td>
+                                                <td><Button variant="link">edit</Button></td>
+                                            </tr>
+                                            <tr>
                                                 <th scope="row">Username:</th>
-                                                <td>chasepants</td>
+                                                <td>{user.username}</td>
                                                 <td><Button variant="link">edit</Button></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Password:</th>
                                                 <td>*********</td>
-                                                <td><Button variant="link">edit</Button></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Email:</th>
-                                                <td>chase.parks94@gmail.com</td>
                                                 <td><Button variant="link">edit</Button></td>
                                             </tr>
                                             <tr>

@@ -1,29 +1,43 @@
+import {useState} from 'react';
 import { Auth } from 'aws-amplify';
 import { Button, Form } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import resendCode from '../../services/auth/sendConfirmation';
 import addUser from '../../services/api/addUser';
 
 function ConfirmationCard({setCode, code, username, password, firstName, lastName}) {
+    const dispatch = useDispatch();
+    const [auth, setAuth] = useState(false);
 
     async function confirmSignUp() {
         try {
-            Auth.confirmSignUp(username, code).then(resp => {
-                //log the user in and then add the user
-                Auth.signIn(username, password).then(async resp => {
+            let confirmSignUpResponse = await Auth.confirmSignUp(username, code);
+            console.log("response from confirm sign up");
+            console.log(confirmSignUpResponse);
+            if (confirmSignUpResponse === "SUCCESS") {
+                let cognitoUser = await Auth.signIn(username, password);
+                console.log("response from sign in");
+                if (cognitoUser) {
                     let userObj = {
                         firstName: firstName,
                         lastName: lastName,
                         username: username
                     }
-                    await addUser(userObj);
-                });
-            })
+                    let response = await addUser(userObj, dispatch);
+                    console.log("RESPONSE FROM ADD USER")
+                    console.log(response);
+                    if (response === "SUCCESS") {
+                        setAuth(true);
+                    }
+                }
+            }
         } catch (error) {
             console.log('error confirming signup')
         }
     }
 
-    return (
+    return auth ? <Redirect to="/account" /> : (
         <div className="col-sm-4 offset-sm-4 form-card p-3 d-flex flex-column justify-content-between">
             <h4>Enter your confirmation code</h4>
             <Form.Group className="mt-3">
