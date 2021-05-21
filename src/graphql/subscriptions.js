@@ -5,7 +5,8 @@ export const onCreateUser = /* GraphQL */ `
   subscription OnCreateUser($owner: String!) {
     onCreateUser(owner: $owner) {
       id
-      name
+      first_name
+      last_name
       email
       createdAt
       updatedAt
@@ -17,7 +18,8 @@ export const onUpdateUser = /* GraphQL */ `
   subscription OnUpdateUser($owner: String!) {
     onUpdateUser(owner: $owner) {
       id
-      name
+      first_name
+      last_name
       email
       createdAt
       updatedAt
@@ -29,7 +31,8 @@ export const onDeleteUser = /* GraphQL */ `
   subscription OnDeleteUser($owner: String!) {
     onDeleteUser(owner: $owner) {
       id
-      name
+      first_name
+      last_name
       email
       createdAt
       updatedAt
