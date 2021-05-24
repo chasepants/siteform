@@ -13,11 +13,8 @@ function ConfirmationCard({setCode, code, username, password, firstName, lastNam
     async function confirmSignUp() {
         try {
             let confirmSignUpResponse = await Auth.confirmSignUp(username, code);
-            console.log("response from confirm sign up");
-            console.log(confirmSignUpResponse);
             if (confirmSignUpResponse === "SUCCESS") {
                 let cognitoUser = await Auth.signIn(username, password);
-                console.log("response from sign in");
                 if (cognitoUser) {
                     let userObj = {
                         firstName: firstName,
@@ -25,15 +22,13 @@ function ConfirmationCard({setCode, code, username, password, firstName, lastNam
                         username: username
                     }
                     let response = await addUser(userObj, dispatch);
-                    console.log("RESPONSE FROM ADD USER")
-                    console.log(response);
                     if (response === "SUCCESS") {
                         setAuth(true);
                     }
                 }
             }
         } catch (error) {
-            console.log('error confirming signup')
+            console.log(error);
         }
     }
 

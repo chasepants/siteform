@@ -2,7 +2,7 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { createUser } from '../../graphql/mutations';
 
 async function addUser({firstName, lastName, username}, dispatch) {
-    try {
+    try {   
         const user = { 
             first_name: firstName,
             last_name: lastName,
@@ -10,8 +10,7 @@ async function addUser({firstName, lastName, username}, dispatch) {
         }
 
         let createUserResponse = await API.graphql(graphqlOperation(createUser, {input: user}));
-        console.log("getting response from create user");
-        console.log(createUserResponse);
+        
         if (createUserResponse) {
             //store the user in redux
             dispatch({
@@ -20,10 +19,10 @@ async function addUser({firstName, lastName, username}, dispatch) {
                 last_name: user.last_name,
                 username: user.email
             })
-            return "SUCCESS";
-        }            
+        }     
+
+        return "SUCCESS";
     } catch (err) {
-        console.log("ADD USER ERROR:")
         console.log(err);
         return "ERROR";
     }

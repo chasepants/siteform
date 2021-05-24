@@ -26,17 +26,16 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/' component={AddHeader(HomePage)}/>
-          <Route path='/domains' component={DomainSelectorPage}/>
-          <Route path='/login' component={LoginPage}/>
-          <Route path='/templates' component={TemplateSelector}/> 
-          <Route path='/site-form' component={SiteForm}/>  
-          <Route path='/images' component={ImageSelector}/>  
+          <Route path='/domains' component={AddHeader(DomainSelectorPage)}/>
+          <Route path='/login' component={AddHeader(LoginPage)}/>
+          <Route path='/templates' component={AddHeader(TemplateSelector)}/> 
+          <Route path='/site-form' component={AddHeader(SiteForm)}/>  
           <Route path='/account' component={AddHeader(RequireAuth(AccountPage))}/>
-          <Route path='/sites' component={RequireAuth(MySites)}/>
-          <Route path='/pricing' component={PricingPage}/>
-          <Route path='/choose-plan' component={SelectPricing}/>
+          <Route path='/sites' component={AddHeader(RequireAuth(MySites))}/>
+          <Route path='/pricing' component={AddHeader(PricingPage)}/>
+          <Route path='/choose-plan' component={AddHeader(SelectPricing)}/>
           <Route path='/account-form' component={AccountForm}/>
-          <Route component={PageNotFound}/>
+          <Route component={AddHeader(PageNotFound)}/>
         </Switch> 
       </Router>
   );

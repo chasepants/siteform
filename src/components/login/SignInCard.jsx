@@ -1,8 +1,14 @@
+import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
 import logUserIn from '../../services/auth/signIn';
 
 function SignInCard({setUsername, setPassword, setErrorHeader, setErrorMessage, username, password, setSignUp}) {
-    return (
+    const [auth, setAuth] = useState(false);
+    const dispatch = useDispatch();
+
+    return auth ? <Redirect to="/account" /> : (
         <div className="col-sm-4 offset-sm-4 form-card p-3 d-flex flex-column justify-content-between">
             <h4>Sign in to your account</h4>
             <Form.Group className="mt-3">
@@ -21,11 +27,13 @@ function SignInCard({setUsername, setPassword, setErrorHeader, setErrorMessage, 
             </Form.Group>
             <Form.Group className="text-center mt-3">
                 <Button onClick={async () => {
-                    let error = await logUserIn(username, password);
-                    if (error) {
+                    let resp = await logUserIn(username, password, setErrorMessage, dispatch);
+                    console.log(resp);
+                    if (resp === "SUCCESS") {
+                        setAuth(true);
+                    } else {
                         setErrorHeader('Hmm, looks like something went wrong');
-                        setErrorMessage(error.message);
-                    } 
+                    }
                 }} >Sign In</Button>
                 <Form.Text className=" mt-3 text-muted">
                     Need an account? <a onClick={()=>setSignUp(true)} href="#">Sign Up</a>
