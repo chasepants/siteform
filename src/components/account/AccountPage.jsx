@@ -24,7 +24,7 @@ function AccountPage() {
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
                                 <Card.Body>
-                                    <table class="table">
+                                    <table className="table">
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Name:</th>
@@ -64,7 +64,7 @@ function AccountPage() {
                             </Card.Header>
                             <Accordion.Collapse eventKey="1">
                                 <Card.Body>
-                                    <table class="table">
+                                    <table className="table">
                                         <thead>
                                             <tr>
                                             <th scope="col"></th>
@@ -99,7 +99,7 @@ function AccountPage() {
                             </Card.Header>
                             <Accordion.Collapse eventKey="2">
                                 <Card.Body>
-                                    <table class="table">
+                                    <table className="table">
                                         <thead>
                                             <tr>
                                             <th scope="col">Name</th>

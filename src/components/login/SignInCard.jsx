@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import logUserIn from '../../services/auth/signIn';
 
-function SignInCard({setUsername, setPassword, setErrorHeader, setErrorMessage, username, password, setSignUp}) {
+function SignInCard({setUsername, setPassword, setErrorMessage, username, password, setSignUp, setAwaitCode}) {
     const [auth, setAuth] = useState(false);
     const dispatch = useDispatch();
 
@@ -27,12 +27,18 @@ function SignInCard({setUsername, setPassword, setErrorHeader, setErrorMessage, 
             </Form.Group>
             <Form.Group className="text-center mt-3">
                 <Button onClick={async () => {
-                    let resp = await logUserIn(username, password, setErrorMessage, dispatch);
+                    let resp = await logUserIn(username, password, setErrorMessage, setAwaitCode);
                     console.log(resp);
-                    if (resp === "SUCCESS") {
+                    if (resp != "ERROR") {
+                        dispatch({
+                            type: "ADD_USER",
+                            user: {
+                                first_name: resp.data.getUserByEmail.items[0].first_name,
+                                last_name: resp.data.getUserByEmail.items[0].last_name,
+                                username: resp.data.getUserByEmail.items[0].email
+                            }
+                        })
                         setAuth(true);
-                    } else {
-                        setErrorHeader('Hmm, looks like something went wrong');
                     }
                 }} >Sign In</Button>
                 <Form.Text className=" mt-3 text-muted">

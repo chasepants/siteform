@@ -13,7 +13,6 @@ class NavigationBar extends React.Component{
     async componentDidMount() {
         await Auth.currentSession()
         .then(data => {
-            console.log(data);
             this.setState({ isAuthenticated: true, isLoading: false });
         }).catch(err =>{
             console.log(err);

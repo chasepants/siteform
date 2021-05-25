@@ -6,21 +6,24 @@ import { Redirect } from 'react-router-dom';
 import resendCode from '../../services/auth/sendConfirmation';
 import addUser from '../../services/api/addUser';
 
-function ConfirmationCard({setCode, code, username, password, firstName, lastName}) {
+function ConfirmationCard({setCode, code, setErrorMessage, username, password, firstName, lastName}) {
     const dispatch = useDispatch();
     const [auth, setAuth] = useState(false);
 
     async function confirmSignUp() {
         try {
             let confirmSignUpResponse = await Auth.confirmSignUp(username, code);
+            console.log(confirmSignUpResponse);
             if (confirmSignUpResponse === "SUCCESS") {
                 let cognitoUser = await Auth.signIn(username, password);
+                console.log(cognitoUser);
                 if (cognitoUser) {
                     let userObj = {
                         firstName: firstName,
                         lastName: lastName,
                         username: username
                     }
+                    console.log("CALLING ADD USER");
                     let response = await addUser(userObj, dispatch);
                     if (response === "SUCCESS") {
                         setAuth(true);
@@ -29,6 +32,8 @@ function ConfirmationCard({setCode, code, username, password, firstName, lastNam
             }
         } catch (error) {
             console.log(error);
+            setErrorMessage(error.message);
+            return "ERROR";
         }
     }
 
@@ -43,7 +48,11 @@ function ConfirmationCard({setCode, code, username, password, firstName, lastNam
                 </Form.Text>
             </Form.Group>
             <Form.Group className="text-center mt-3">
-                <Button onClick={() => confirmSignUp()} >Confirm</Button>
+                <Button onClick={() => {
+                    // let response = await confirmSignUp();
+                    // console.log(response);
+                    confirmSignUp();
+                }}> Confirm </Button>
             </Form.Group>
         </div>
     )

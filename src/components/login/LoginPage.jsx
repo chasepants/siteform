@@ -13,35 +13,47 @@ function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     
-    const [errorHeader, setErrorHeader]   = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
     if (awaitCode) {
         return (
-            <ConfirmationCard 
-                setCode={setCode}
-                code={code}
-                username={username}
-                password={password}
-                firstName={firstName}
-                lastName={lastName} 
-            />
+            <>
+                <ConfirmationCard 
+                    setCode={setCode}
+                    code={code}
+                    setErrorMessage={setErrorMessage}
+                    username={username}
+                    password={password}
+                    firstName={firstName}
+                    lastName={lastName} 
+                />
+                <div className="row mt-4">
+                    {
+                        errorMessage && (
+                        <ErrorBox
+                            setErrorMessage={setErrorMessage}
+                            errorMessage={errorMessage}
+                        />  
+                        )
+                    }
+                </div>
+            </>
         );
     }
 
     return (
-        <div class="container mt-5">
+        <div className="container mt-5">
             <div className="row">
                 {
                     !signUp ? (
                         <SignInCard 
                             setUsername={setUsername}
                             setPassword={setPassword}
-                            setErrorHeader={setErrorHeader}
                             setErrorMessage={setErrorMessage}
                             username={username}
                             password={password}
                             setSignUp={setSignUp}
+                            setAwaitCode={setAwaitCode}
                         />
                     ) : (
                         <SignUpCard 
@@ -54,7 +66,6 @@ function LoginPage() {
                             password={password}
                             setPassword={setPassword}
                             setAwaitCode={setAwaitCode}
-                            setErrorHeader={setErrorHeader}
                             setErrorMessage={setErrorMessage}
                             setSignUp={setSignUp}
                         />
@@ -67,7 +78,6 @@ function LoginPage() {
                       <ErrorBox
                         setErrorMessage={setErrorMessage}
                         errorMessage={errorMessage}
-                        errorHeader={errorHeader}
                       />  
                     )
                 }

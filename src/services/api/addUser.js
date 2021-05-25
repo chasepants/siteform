@@ -8,16 +8,21 @@ async function addUser({firstName, lastName, username}, dispatch) {
             last_name: lastName,
             email: username
         }
+        
+        console.log("Attempting to add via graphql: ");
+        console.log(user);
 
         let createUserResponse = await API.graphql(graphqlOperation(createUser, {input: user}));
-        
+        console.log(createUserResponse);
         if (createUserResponse) {
             //store the user in redux
             dispatch({
                 type: "ADD_USER",
-                first_name: user.first_name,
-                last_name: user.last_name,
-                username: user.email
+                user: {
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    username: user.email
+                }
             })
         }     
 

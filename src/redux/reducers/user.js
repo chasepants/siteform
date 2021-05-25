@@ -3,9 +3,9 @@ export default function userReducer(state = {first_name: "", last_name: "", user
         case 'ADD_USER':
             return {
                 ...state,
-                first_name: action.first_name,
-                last_name: action.last_name,
-                username: action.username
+                first_name: action.user.first_name,
+                last_name: action.user.last_name,
+                username: action.user.username
             } 
         default:
             return state;
