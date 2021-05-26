@@ -1,5 +1,6 @@
 import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Logout from './Logout';
 import Login from './Login';
 import { Auth } from 'aws-amplify';
@@ -38,14 +39,19 @@ class NavigationBar extends React.Component{
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto">
-                                <Nav.Link href="/templates">
-                                Templates
+                                <Nav.Link>
+                                    <Link to="/templates">
+                                        Templates
+                                    </Link>
                                 </Nav.Link>
-                                <Nav.Link href="/domains">
-                                Domains
-                                </Nav.Link>
-                                <Nav.Link href="/pricing">
-                                Pricing
+                                <Nav.Link>
+                                    <Link to="/domains">
+                                        Domains
+                                    </Link>
+                                </Nav.Link><Nav.Link>
+                                    <Link to="/pricing">
+                                        Pricing
+                                    </Link>
                                 </Nav.Link>
                                 <Nav>
                                     <Login/>
@@ -66,20 +72,30 @@ class NavigationBar extends React.Component{
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link href="/templates">
-                            Templates
+                            <Nav.Link>
+                                <Link to="/templates">
+                                    Templates
+                                </Link>
                             </Nav.Link>
-                            <Nav.Link href="/domains">
-                            Domains
+                            <Nav.Link>
+                                <Link to="/domains">
+                                    Domains
+                                </Link>
                             </Nav.Link>
-                            <Nav.Link href="/pricing">
-                            Pricing
+                            <Nav.Link>
+                                <Link to="/pricing">
+                                    Pricing
+                                </Link>
                             </Nav.Link>
-                            <Nav.Link href="/sites">
-                                Sites
+                            <Nav.Link>
+                                <Link to="/sites">
+                                    Sites
+                                </Link>
                             </Nav.Link>
-                            <Nav.Link href="/account">
-                                Account
+                            <Nav.Link>
+                                <Link to="/account">
+                                    Account
+                                </Link>
                             </Nav.Link>
                             <Nav>
                                 <Logout/>

@@ -3,8 +3,8 @@ import { Auth } from 'aws-amplify';
 import { Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import resendCode from '../../services/auth/sendConfirmation';
-import addUser from '../../services/api/addUser';
+import {resendCode} from '../../services/auth';
+import {addUser} from '../../services/api/users';
 
 function ConfirmationCard({setCode, code, setErrorMessage, username, password, firstName, lastName}) {
     const dispatch = useDispatch();

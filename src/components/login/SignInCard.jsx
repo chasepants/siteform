@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import logUserIn from '../../services/auth/signIn';
+import { logUserIn } from '../../services/auth';
 
 function SignInCard({setUsername, setPassword, setErrorMessage, username, password, setSignUp, setAwaitCode}) {
     const [auth, setAuth] = useState(false);
@@ -35,7 +35,8 @@ function SignInCard({setUsername, setPassword, setErrorMessage, username, passwo
                             user: {
                                 first_name: resp.data.getUserByEmail.items[0].first_name,
                                 last_name: resp.data.getUserByEmail.items[0].last_name,
-                                username: resp.data.getUserByEmail.items[0].email
+                                username: resp.data.getUserByEmail.items[0].email,
+                                id: resp.data.getUserByEmail.items[0].id
                             }
                         })
                         setAuth(true);

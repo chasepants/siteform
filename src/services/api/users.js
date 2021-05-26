@@ -1,4 +1,5 @@
 import { API, graphqlOperation } from 'aws-amplify';
+import { getUserByEmail } from '../../graphql/queries';
 import { createUser } from '../../graphql/mutations';
 
 async function addUser({firstName, lastName, username}, dispatch) {
@@ -33,4 +34,20 @@ async function addUser({firstName, lastName, username}, dispatch) {
     }
 }
 
-export default addUser;
+async function getUserDetails(username) {
+    console.log("getting user details for " + username);
+    try {
+        let getUserResponse = await API.graphql(graphqlOperation(getUserByEmail, {email: username}));
+        console.log(getUserResponse);
+        
+        return getUserResponse;
+    } catch (err) {
+        console.log(err);
+        return "ERROR";
+    }
+}
+
+export {
+    addUser,
+    getUserDetails
+};
