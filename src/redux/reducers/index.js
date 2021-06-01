@@ -9,6 +9,7 @@ import formReducer from './form';
 import pricingReducer from './pricing';
 import authReducer from './auth';
 import userReducer from './user';
+import siteDataReducer from './siteData';
 
 const root = combineReducers({
     bucket: bucket,
@@ -20,7 +21,8 @@ const root = combineReducers({
     form: formReducer,
     pricing: pricingReducer,
     auth: authReducer,
-    user: userReducer
+    user: userReducer,
+    site: siteDataReducer
 });
 
 export default root;

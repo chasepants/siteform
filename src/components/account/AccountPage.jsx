@@ -1,7 +1,12 @@
 import { Accordion, Button, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { Auth } from 'aws-amplify';
+import { getUserDetails } from '../../services/api/users';
 
 function AccountPage() {
+    const [reload, setReload] = useState(false);
+
     const dispatch = useDispatch();
 
     dispatch({ 
@@ -10,6 +15,30 @@ function AccountPage() {
     });
 
     const user = useSelector(state => state.user);
+
+    const loadUser = async () => {
+        let user = await Auth.currentAuthenticatedUser();
+        console.log(user.attributes.email);
+        let resp = await getUserDetails(user.attributes.email);
+        console.log(resp);
+        dispatch({
+            type: "ADD_USER",
+            user: {
+                first_name: resp.data.getUserByEmail.items[0].first_name,
+                last_name: resp.data.getUserByEmail.items[0].last_name,
+                username: resp.data.getUserByEmail.items[0].email,
+                id: resp.data.getUserByEmail.items[0].id
+            }
+        });
+        setReload(!reload);
+    }
+
+    useEffect(() => {
+        console.log(user);
+        if (!user.first_name) {
+            loadUser();
+        }
+    }, [reload])
 
     return (
         <div className="container">

@@ -21,6 +21,7 @@ function SiteForm() {
       });
 
     useEffect(()=>{
+        console.log("GENERATING WEBSITES FILES");
         const generateWebsiteFiles = async () => {            
             const buildSiteResult = await axios.post(
                 'https://aorhdaraf6.execute-api.us-west-1.amazonaws.com/prod/generateWebsiteFiles', postData);

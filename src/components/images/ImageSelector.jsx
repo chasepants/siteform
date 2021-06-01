@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import SubHeader from '../common/SubHeader';
+import SubHeader from '../header/SubHeader';
 import ImageRow from '../images/ImageRow';
 
 function ImageSelector() {

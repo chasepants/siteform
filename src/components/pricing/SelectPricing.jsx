@@ -32,7 +32,7 @@ function SelectPricing() {
         });
     }
 
-    return <PricingPage choosePricing={choosePricing} nextPage="/domain" />
+    return <PricingPage choosePricing={choosePricing} nextPage="/domains" />
 }
 
 export default SelectPricing;

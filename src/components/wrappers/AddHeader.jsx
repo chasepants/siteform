@@ -1,6 +1,6 @@
 import React from 'react';
-import NavigationBar from '../common/NavigationBar';
-import Header from '../common/Header';
+import NavigationBar from '../navigation/NavigationBar';
+import Header from '../headers/Header';
 
 const AddHeader = (Component) => {
     return class App extends React.Component {

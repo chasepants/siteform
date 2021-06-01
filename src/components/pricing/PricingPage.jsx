@@ -19,7 +19,7 @@ function PricingPage() {
         });
     }
 
-    const nextPage = formComplete ? "/domain" : "/templates"
+    const nextPage = formComplete ? "/domains" : "/templates"
 
     return <div className="container mt-5">
         <div className="row mt-5 justify-content-between">

@@ -13,9 +13,6 @@ async function getUserSites() {
 async function addSite(userId) {
     console.log(userId)
     try {   
-        if (!userId) {
-            //getUserByEmail, email will be in Auth.currentSession??
-        }
         const site = { 
             userID: userId,
             domain: faker.internet.url(),

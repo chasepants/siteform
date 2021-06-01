@@ -12,7 +12,7 @@ import HomePage from './components/HomePage';
 import AccountPage from './components/account/AccountPage';
 import PricingPage from './components/pricing/PricingPage';
 import SelectPricing from './components/pricing/SelectPricing';
-import MySites from './components/account/MySites';
+import Sites from './components/sites/Sites';
 import PageNotFound from './PageNotFound';
 import LoginPage from './components/login/LoginPage';
 import RequireAuth from './components/wrappers/RequireAuth';
@@ -28,7 +28,7 @@ function App() {
           <Route path='/templates' component={AddHeader(TemplateSelector)}/> 
           <Route path='/site-form' component={AddHeader(SiteForm)}/>  
           <Route path='/account' component={AddHeader(RequireAuth(AccountPage))}/>
-          <Route path='/sites' component={AddHeader(RequireAuth(MySites))}/>
+          <Route path='/sites' component={AddHeader(RequireAuth(Sites))}/>
           <Route path='/pricing' component={AddHeader(PricingPage)}/>
           <Route path='/choose-plan' component={AddHeader(SelectPricing)}/>
           <Route component={AddHeader(PageNotFound)}/>

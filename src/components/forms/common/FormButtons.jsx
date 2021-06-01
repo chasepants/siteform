@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
 function FormButtons() {
-
     const dispatch = useDispatch();
 
     const isLastForm  = useSelector(state => state.form.isLastForm);
